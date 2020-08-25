@@ -258,9 +258,5 @@ static inline int pld_snoc_is_fw_rejuvenate(void)
 	return icnss_is_rejuvenate();
 }
 
-static inline void pld_snoc_block_shutdown(bool status)
-{
-	icnss_block_shutdown(status);
-}
 #endif
 #endif
