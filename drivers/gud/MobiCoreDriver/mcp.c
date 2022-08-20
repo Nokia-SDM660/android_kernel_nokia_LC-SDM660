@@ -1,5 +1,6 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
- * Copyright (c) 2013-2018 TRUSTONIC LIMITED
+ * Copyright (c) 2013-2020 TRUSTONIC LIMITED
  * All Rights Reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -179,7 +180,7 @@ static inline bool mcp_session_isrunning(struct mcp_session *session)
  * session remains valid thanks to the upper layers reference counters, but the
  * SWd session may have died, in which case we are informed.
  */
-int mcp_wait(struct mcp_session *session, s32 timeout, bool silent_expiry)
+int mcp_wait(struct mcp_session *session, s32 timeout, int silent_expiry)
 {
 	s32 err;
 	int ret = 0;
@@ -689,7 +690,8 @@ err_mmu:
 int mcp_close_session(struct mcp_session *session)
 {
 	union mcp_message cmd;
-	int ret;
+	/* ret's value is always set, but some compilers complain */
+	int ret = -ENXIO;
 
 	if (is_xen_domu()) {
 #ifdef TRUSTONIC_XEN_DOMU

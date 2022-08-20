@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0
 /*
  * Copyright (c) 2013-2018 TRUSTONIC LIMITED
  * All Rights Reserved.
@@ -21,7 +22,6 @@
 #include "public/mc_user.h"
 
 #include "main.h"
-#include "mci/gptci.h"	/* Needs stuff from tee_client_api.h or its includes */
 #include "mci/mcinq.h"	/* TA termination codes */
 #include "client.h"
 

@@ -1,6 +1,5 @@
-/* SPDX-License-Identifier: GPL-2.0 */
 /*
- * Copyright (c) 2013-2017 TRUSTONIC LIMITED
+ * Copyright (c) 2013-2015 TRUSTONIC LIMITED
  * All Rights Reserved.
  *
  * This program is free software; you can redistribute it and/or
@@ -12,12 +11,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  */
+#ifndef _MC_LINUX_API_H_
+#define _MC_LINUX_API_H_
 
-#ifndef _MC_LOGGING_H_
-#define _MC_LOGGING_H_
+#include <linux/types.h>
 
-void logging_run(void);
-int logging_init(phys_addr_t *buffer, u32 *size);
-void logging_exit(bool buffer_busy);
+/*
+ * Switch TEE active core to core_num, defined as linux
+ * core id
+ */
+int mc_switch_core(int core_num);
 
-#endif /* _MC_LOGGING_H_ */
+/*
+ * Return TEE active core as Linux core id
+ */
+int mc_active_core(void);
+
+#endif /* _MC_LINUX_API_H_ */

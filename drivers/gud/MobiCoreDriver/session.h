@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2013-2018 TRUSTONIC LIMITED
  * All Rights Reserved.
@@ -42,7 +43,7 @@ struct tee_wsm {
 	/* Pointer to associated cbuf, if relevant */
 	struct cbuf		*cbuf;
 	/* State of this WSM */
-	bool			in_use;
+	int			in_use;
 };
 
 struct tee_session {

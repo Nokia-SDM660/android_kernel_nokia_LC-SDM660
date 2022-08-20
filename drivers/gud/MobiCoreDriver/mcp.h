@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2013-2018 TRUSTONIC LIMITED
  * All Rights Reserved.
@@ -101,7 +102,7 @@ void mcp_cleanup_session(struct mcp_session *session);
 int mcp_map(u32 session_id, struct tee_mmu *mmu, u32 *sva);
 int mcp_unmap(u32 session_id, const struct mcp_buffer_map *map);
 int mcp_notify(struct mcp_session *mcp_session);
-int mcp_wait(struct mcp_session *session, s32 timeout, bool silent_expiry);
+int mcp_wait(struct mcp_session *session, s32 timeout, int silent_expiry);
 int mcp_get_err(struct mcp_session *session, s32 *err);
 
 /* Initialisation/cleanup */

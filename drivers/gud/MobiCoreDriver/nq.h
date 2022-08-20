@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright (c) 2013-2018 TRUSTONIC LIMITED
  * All Rights Reserved.
@@ -46,7 +47,7 @@ struct nq_session {
 	/* Time at notification state change */
 	u64			cpu_clk;
 	/* This TA is of Global Platform type, set by upper layer */
-	bool			is_gp;
+	int			is_gp;
 };
 
 /* Notification queue channel */

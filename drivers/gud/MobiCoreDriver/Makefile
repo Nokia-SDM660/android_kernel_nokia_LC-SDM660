@@ -1,22 +1,21 @@
-# Copyright (c) 2013-2018 TRUSTONIC LIMITED
-# All Rights Reserved.
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# version 2 as published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-
-#
-# Makefile for the Kinibi core driver
+# Makefile for the Trustonic core driver
 #
 
 GUD_ROOT_FOLDER := drivers/gud/
 
-# add our modules to kernel.
+ifneq ($(filter m y,$(CONFIG_TRUSTONIC_TEE_DEBUG)),)
+	ccflags-y += -DDEBUG
+endif
+
+ifneq ($(filter m y,$(CONFIG_RSU_SELECT_SILVER_CORES)),)
+	ccflags-y += -DRSU_SELECT_SILVER_CORES
+endif
+
+ifneq ($(filter m y,$(CONFIG_RSU_INTERNAL_CLOCK)),)
+	ccflags-y += -DRSU_INTERNAL_CLOCK
+endif
+
 obj-$(CONFIG_TRUSTONIC_TEE) += mcDrvModule.o
 
 mcDrvModule-y := \
@@ -37,12 +36,6 @@ mcDrvModule-y := \
 	xen_be.o \
 	xen_common.o \
 	xen_fe.o
-
-# Release mode by default
-ccflags-y += -DNDEBUG
-ccflags-y += -Wno-declaration-after-statement
-
-ccflags-$(CONFIG_TRUSTONIC_TEE_DEBUG) += -DDEBUG
 
 # MobiCore Driver includes
 ccflags-y += -I$(GUD_ROOT_FOLDER)/MobiCoreDriver
