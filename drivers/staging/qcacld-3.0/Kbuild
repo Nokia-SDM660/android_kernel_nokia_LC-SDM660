@@ -2009,3 +2009,5 @@ endif
 obj-$(CONFIG_QCA_CLD_WLAN) += $(MODNAME).o
 $(MODNAME)-y := $(OBJS)
 clean-files := $(CLEAN_FILES)
+subdir-ccflags-y := $(call cc-disable-warning, enum-conversion)
+
