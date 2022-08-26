@@ -1,20 +1,18 @@
 #!/bin/bash
 
-echo "------------------------------------------------------"
-echo "Kernel Source For LC-SDM660-2019 Models"
-echo "------------------------------------------------------"
-
+pathtoclang=/root/clang
+pathtogcc=/root/aarch64-linux-android-4.9
 path=/root
 
 cd
-mkdir black_caps
 git clone https://github.com/RaghuVarma331/aarch64-linux-android-4.9.git -b master --depth=1 aarch64-linux-android-4.9
+git clone https://github.com/RaghuVarma331/clang.git -b android-12.0 --depth=1 clang
 cd kernel
 clear
-export ARCH=arm64
-export CROSS_COMPILE=$path/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-mkdir output
-make -C $(pwd) O=output DDV_defconfig
-make -j32 -C $(pwd) O=output
-cp -r output/arch/arm64/boot/Image.gz-dtb $path/black_caps
-
+make O=out ARCH=arm64 DDV_defconfig
+PATH=$pathtoclang/bin:$pathtogcc/bin:${PATH} \
+make -j$(nproc --all) O=out \
+                      ARCH=arm64 \
+                      CC=clang \
+                      CLANG_TRIPLE=aarch64-linux-gnu- \
+                      CROSS_COMPILE=aarch64-linux-android-
