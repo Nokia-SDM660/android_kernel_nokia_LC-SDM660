@@ -216,6 +216,7 @@ source "drivers/input/misc/Kconfig"
 
 # modify by zhoudan for fingerprint
 source "drivers/input/fingerprint/Kconfig"
+source "drivers/input/sensors/bmi160/Kconfig"
 
 endif
 
