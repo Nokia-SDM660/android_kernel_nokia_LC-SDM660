@@ -1569,6 +1569,7 @@ void pld_block_shutdown(struct device *dev, bool status)
 
 	switch (type) {
 	case PLD_BUS_TYPE_SNOC:
+		pld_snoc_block_shutdown(status);
 		break;
 	default:
 		break;
@@ -1612,4 +1613,3 @@ int pld_get_thermal_state(struct device *dev, uint16_t *thermal_state)
 	return -ENOTSUPP;
 }
 #endif
-
